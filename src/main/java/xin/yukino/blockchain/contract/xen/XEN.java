@@ -1,4 +1,4 @@
-package xin.yukino.blockchain.contract;
+package xin.yukino.blockchain.contract.xen;
 
 import com.google.common.collect.Lists;
 import org.web3j.abi.FunctionEncoder;

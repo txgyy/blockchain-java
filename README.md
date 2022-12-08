@@ -12,8 +12,8 @@ okc的rpc链接需要设置代理才能访问，在host文件中进行如下配�
 
 ## 工具
 ### XEN批量mint
-使用EOA账号：xin.yukino.blockchain.contract.XEN \
-使用合约账号：xin.yukino.blockchain.contract.XENFT
+使用EOA账号：xin.yukino.blockchain.contract.xen.XEN \
+使用合约账号：xin.yukino.blockchain.contract.xen.XENFT
 
 ### 创建代理合约
 EIP1167：xin.yukino.blockchain.contract.eip.EIP1167
