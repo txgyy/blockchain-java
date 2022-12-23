@@ -4,14 +4,10 @@ import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
 import org.apache.commons.codec.binary.Hex;
 import org.web3j.abi.datatypes.Type;
-import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.crypto.Hash;
 import org.web3j.utils.Numeric;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class CodecUtil {

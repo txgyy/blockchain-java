@@ -10,6 +10,7 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.EthCall;
 import xin.yukino.blockchain.component.BlockChainClient;
 import xin.yukino.blockchain.constant.MyConstant;
+import xin.yukino.blockchain.util.CodecUtil;
 import xin.yukino.blockchain.util.Web3jUtil;
 
 import java.util.List;
@@ -26,10 +27,10 @@ public class Erc20 {
     }
 
     public static void main(String[] args) {
-        String contract = "0xc946daf81b08146b1c7a8da2a851ddf2b3eaaf85";
+        String contract = "0xdf54b6c6195ea4d948d03bfd818d365cf175cfc2";
         EthCall ethCall = symbol(contract);
 
-        System.out.println(JSON.toJSONString(ethCall));
         System.out.println(ethCall.getResult());
+        System.out.println(CodecUtil.decodeHex("200455534443"));
     }
 }
