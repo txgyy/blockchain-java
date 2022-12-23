@@ -19,4 +19,5 @@ public class BlockChainClient {
 
     public static final BlockChainClient OKC_TEST_NET = BlockChainClient.builder().web3j(Web3j.build(new HttpService("https://exchaintestrpc.okex.org"))).netVersion("65").chainId(65L).build();
 
+    public static final BlockChainClient ETH_MAIN_NET = BlockChainClient.builder().web3j(Web3j.build(new HttpService("https://mainnet.infura.io/v3/099fc58e0de9451d80b18d7c74caa7c1"))).netVersion("1").chainId(1L).build();
 }

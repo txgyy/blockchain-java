@@ -19,9 +19,17 @@ public class GasBackMSGHelper {
 
     public static List<Type> genRegisterMsg(String contract, String withdraw, List<Integer> nonceList, String contractAddress, Credentials credentials, BlockChainClient blockChainClient) {
         List<Type> inputParameters = Lists.newArrayList(new Address(contract), new Address(withdraw), new DynamicArray<>(Uint256.class, nonceList.stream().map(Uint256::new).collect(Collectors.toList())));
-        List<TypeReference<?>> outputParameters = Lists.newArrayList(new TypeReference<Utf8String>() {
-        });
+        List<TypeReference<?>> outputParameters = Lists.newArrayList(TypeReference.create(Utf8String.class));
         Function function = new Function("genRegisterMsg", inputParameters, outputParameters);
+
+        EthCall ethCall = Web3jUtil.call(contractAddress, function, credentials.getAddress(), blockChainClient.getWeb3j());
+        return FunctionReturnDecoder.decode(ethCall.getValue(), function.getOutputParameters());
+    }
+
+    public static List<Type> genCancelMsg(String contract, String contractAddress, Credentials credentials, BlockChainClient blockChainClient) {
+        List<Type> inputParameters = Lists.newArrayList(new Address(contract));
+        List<TypeReference<?>> outputParameters = Lists.newArrayList(TypeReference.create(Utf8String.class));
+        Function function = new Function("genCancelMsg", inputParameters, outputParameters);
 
         EthCall ethCall = Web3jUtil.call(contractAddress, function, credentials.getAddress(), blockChainClient.getWeb3j());
         return FunctionReturnDecoder.decode(ethCall.getValue(), function.getOutputParameters());
@@ -36,5 +44,9 @@ public class GasBackMSGHelper {
         Utf8String genRegisterMsg = (Utf8String) genRegisterMsg(contract, withdraw, nonceList, contractAddress, MyConstant.DEFAULT_SENDER, BlockChainClient.OKC_MAIN_NET).get(0);
         System.out.println(genRegisterMsg);
         System.out.println(CodecUtil.decodeHex(genRegisterMsg.getValue()));
+
+        Utf8String genCancelMsg = (Utf8String) genCancelMsg(contract, contractAddress, MyConstant.DEFAULT_SENDER, BlockChainClient.OKC_MAIN_NET).get(0);
+        System.out.println(genCancelMsg);
+        System.out.println(CodecUtil.decodeHex(genCancelMsg.getValue()));
     }
 }
