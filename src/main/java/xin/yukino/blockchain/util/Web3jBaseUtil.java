@@ -1,6 +1,5 @@
 package xin.yukino.blockchain.util;
 
-import com.alibaba.fastjson2.JSON;
 import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
@@ -15,6 +14,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static xin.yukino.blockchain.constant.OkcConstant.OKT_DECIMAL;
@@ -74,8 +74,10 @@ public class Web3jBaseUtil {
 
     }
 
-    public static void main(String[] args) {
-        EthBlock.Block block = getBlock(15461965L, BlockChainClient.OKC_MAIN_NET.getWeb3j());
-        System.out.println(JSON.toJSONString(block));
+    @SneakyThrows
+    public static TransactionReceipt getTransactionReceipt(String txHash, Web3j web3j) {
+        EthGetTransactionReceipt transactionReceipt = web3j.ethGetTransactionReceipt(txHash).send();
+        Optional<TransactionReceipt> optional = transactionReceipt.getTransactionReceipt();
+        return optional.orElse(null);
     }
 }
